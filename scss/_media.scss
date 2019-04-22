@@ -93,6 +93,9 @@
 
 // ≥576px
 @include media-breakpoint-down(xs) {
+  .summer--pic__box .txt-14 {
+    font-size: 10px;
+  }
   .offer--pic {
     width: 50%;
   }

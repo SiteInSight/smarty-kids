@@ -8,6 +8,9 @@ $(function () {
     }
   });
 
-  
+  $('.summer--nav__item').click(function () {
+      $(".summer--pic__item").removeClass("active").eq($(this).parent().index()).addClass("active");
+  })
+
 
 });
