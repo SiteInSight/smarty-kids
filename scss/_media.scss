@@ -1,0 +1,202 @@
+@import "vars";
+
+
+/*==========  Desktop First  ==========*/
+
+// ≥1500px
+@include media-breakpoint-down(xl) {
+  .nav a {
+    margin-right: 10px;
+  }
+}
+
+// ≥1200px
+@include media-breakpoint-down(lg) {
+	.heading-2, h2 {
+    font-size: 30px;
+  }
+}
+
+// ≥992px
+@include media-breakpoint-down(md) {
+  .test--form__txt {
+    font-size: 18px;
+  }
+  .teacher--pic , .teacher--desc {
+    width: 50%;
+    text-align: center;
+  }
+  .teacher--desc .txt-14 {
+    font-size: 10px;
+  }
+  .summer--nav__item {
+    font-size: 16px;
+  }
+  .offer--pic {
+    width: 200px;
+    top: 30%;
+  }
+  .offer--inner {
+    width: 70%;
+  }
+  .heading-3, h3 {
+    font-size: 26px;
+  }
+  .offer {
+    padding: 50px;
+  }
+  .bg--bluewave::before {
+    height: 110px;
+  }
+  .border.border--yellow {
+    border: 10px solid #ffc127!important;
+  }
+  .test--form__wrapper {
+    font-size: 18px;
+  }
+}
+
+// ≥768px
+@include media-breakpoint-down(sm) {
+  .communication--item:first-child {
+    display: none;
+  }
+  .programm--box__tral {
+    left: 105px;
+  }
+  .programm--box {
+    text-align: center;
+  }
+  .review--slider__item .row {
+    flex-direction: column-reverse;
+  }
+  .test--form__wrapper {
+    font-size: 14px;
+  }
+  .offer--inner {
+    width: 100%;
+  }
+  .offer {
+    padding: 40px 30px 450px;
+  }
+  .heading-1 {
+    font-size: 44px;
+  }
+  .offer--pic {
+    left: 50%;
+    width: 80%;
+    top: auto;
+    bottom: 0;
+    transform: translateX(-50%)
+  }
+}
+
+// ≥576px
+@include media-breakpoint-down(xs) {
+  .offer--pic {
+    width: 50%;
+  }
+  .test--form__txt {
+    font-size: 15px;
+  }
+  .test--form__txt {
+    margin: 0;
+    width: 100%;
+  }
+  .test--form__wrapper {
+    margin: 0;
+  }
+  .test--form__txt::before {
+    right: 15px;
+    left: auto;
+    top: -26px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #fff;
+  }
+  .test--form__bg {
+    border: 0;
+  }
+  .heading-1 {
+    font-size: 28px;
+  }
+  .heading-2 {
+    font-size: 18px;
+  }
+  .heading-3 {
+    font-size: 16px;
+  }
+  .heading-4 {
+    font-size: 14px;
+  }
+  body {
+    font-size: 14px;
+  }
+  .subtitle--md {
+    font-size: 14px;
+  }
+  .test--form__pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 50%;
+    }
+  }
+  .programm--box__tral {
+    font-size: 10px;
+    left: 10px;
+  }
+  .contacts-list__title {
+    font-size: 16px;
+  }
+  .txt-18 {
+    font-size: 14px;
+  }
+  .s-about {
+    padding: 5rem 0;
+  }
+  .test--form__wrapper {
+    min-height: 100px;
+  }
+  .form--policy {
+    font-size: 10px;
+  }
+  .test--form__wrapper {
+    border-radius: 10px;
+  }
+  .offer {
+    padding: 30px 30px 350px;
+  }
+  .test--form__wrapper {
+    min-height: 55px;
+  }
+}
+
+@media (max-width: 420px) {
+  .offer--pic {
+    width: 80%;
+  }
+}
+
+
+/*==========  Mobile First  ==========*/
+
+// ≤576px
+@include media-breakpoint-up(sm) {
+
+}
+
+// ≤768px
+@include media-breakpoint-up(md) {
+
+}
+
+// ≤992px
+@include media-breakpoint-up(lg) {
+
+}
+
+// ≤1200px
+@include media-breakpoint-up(xl) {
+	
+}
