@@ -1,0 +1,889 @@
+/* cyrillic */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(fonts/Ubuntu-cyr.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(fonts/Ubuntu-lat.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* cyrillic */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(fonts/Ubuntu-Bold-cyr.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(fonts/Ubuntu-Bold-lat.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+
+/* b-pform-ico */
+
+.b-pform-ico{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke: currentColor;
+    fill: currentColor;
+    line-height: 0;
+}
+
+
+/* b-pform */
+
+.b-pform__input, .b-pform__ico, .b-pform__star, .b-pform__button, .b-pform__confirmed-ico {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.b-pform__popup, .b-pform__wrap, .b-pform__inner, .b-pform__title, .b-pform__item, .b-pform__label, .b-pform__optlabel, .b-pform__input, .b-pform__options, .b-pform__optlabel, .b-pform__legend, .b-pform__errtext, .b-pform__bt, .b-pform__success, .b-pform__confirmed, .b-pform__input_file, .b-pform__input_file, .b-pform__filebutton, .b-pform__fileplus, .b-pform__thanks, .b-pform__fail, .b-pform-tooltip{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    color: #666;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* отключает стили Safari на iOS (чтобы работало box-shadow) */
+    -webkit-appearance: none;
+}
+
+.b-pform{
+}
+
+.b-pform_multistep{ /* добавляется автоматически к врапперам многошаговых */
+}
+
+.b-pform_for_dark_bg{}
+
+.b-pform form{
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.b-pform__wrap{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.iexmodal .b-pform__wrap{
+    border: none;
+    padding: 0;
+}
+
+.b-pform__inner {
+    position: relative;
+}
+
+.b-pform__title {
+    position: relative;
+    color: #555;
+    font-size: 17px;
+    line-height: 19px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+.iexmodal .b-pform__title {
+    padding-right: 37px;
+}
+
+.b-pform_multistep .b-pform__title{
+    margin-bottom: 20px;
+}
+
+.b-pform__fail{
+    color: red;
+    margin-bottom: 13px;
+    margin-top: -10px;
+}
+
+.b-pform__item {
+    position: relative;
+    padding: 0 0 20px;
+}
+
+.b-pform__label {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.b-pform__optlabel{
+    display: block;
+    position: relative;
+    font-weight: normal;
+    padding-left: 19px;
+    margin-bottom: 7px;
+}
+
+.b-pform__optlabel_single{
+    display: inline-block;
+    padding-left: 3px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    border-radius: 3px;
+    padding-right: 5px;
+}
+
+.b-pform__optlabel_policy{
+    font-size: 14px;
+    margin-right: -5px;
+}
+
+.b-pform_for_dark_bg .b-pform__optlabel_policy{
+    color: #fff;
+}
+
+.b-pform__optlabel_remember{
+    margin-right: -5px;
+}
+
+.b-pform__options .b-pform__optlabel:last-child{
+    margin-bottom: 0;
+}
+
+.b-pform__options input{
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+.b-pform__optlabel_single input{
+    margin-right: 3px;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.b-pform__input,
+.b-pform__options{
+    padding: 0 30px 0 9px;
+    border-radius: 3px;
+    background: #fbfbfb;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+}
+
+.b-pform__input{
+    height: 37px;
+    width: 100%;
+}
+
+.b-pform__input::placeholder,
+.b-pform__input::-webkit-input-placeholder{
+    opacity: 0.6;
+}
+
+.b-pform__options{
+    padding: 9px 15px 12px 10px;
+    line-height: 16px;
+}
+
+.b-pform__input:focus {
+    box-shadow: 0 0 0 2px #3399cc;
+    outline: 0 none;
+}
+
+.iexform-has-error{
+    box-shadow: 0 0 0 2px red !important;
+}
+
+textarea.b-pform__input {
+    height: 140px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    resize: vertical;
+}
+
+.b-pform__star {
+    background: #ffb746;
+    border-radius: 12px;
+    height: 6px;
+    width: 6px;
+}
+
+.b-pform__item .b-pform__star{
+    position: absolute;
+    top: 42px;
+    right: -12px;
+}
+
+.b-pform__legend .b-pform__star{
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
+.b-pform__legend{
+    font-size: 14px;
+}
+
+.b-pform__errtext {
+    color: red;
+    line-height: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.b-pform__buttons{
+    position: relative;
+    margin: 0 0 15px;
+}
+
+.b-pform_multistep .b-pform__buttons{
+    display: flex;
+}
+.b-pform__btcol{}
+.b-pform__btcol:nth-child(1),
+.b-pform__btcol:nth-child(3){
+    flex-grow: 0;   /* не растягивать, ширина будет определяться контентом или flex-basis */
+}
+.b-pform__btcol:nth-child(2){
+    text-align: center;
+    flex-grow: 1;   /* растягивать, занимает все оставшееся пространство */
+    display: flex;
+    align-items: center; /* по вертикали */
+    justify-content: center; /* по горизонтали */
+}
+
+.b-pform__bt {
+    position: relative;
+
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    height: 47px;
+    line-height: 44px;
+    cursor: pointer;
+
+    box-sizing: content-box;
+    padding: 0;
+    width: 145px;
+
+    outline: 0 none;
+    transition: box-shadow 0.1s;
+    transition: -webkit-box-shadow 0.1s;
+}
+
+.iexmodal .b-pform_multistep .b-pform__bt {
+    width: auto;
+}
+
+.b-pform__bt .b-pform-ico{
+    font-size: 26px;
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+}
+
+.b-pform__bt_prev .b-pform-ico{
+    left: 50%;
+    margin-left: -14px;
+}
+.b-pform__bt_next .b-pform-ico{
+    right: 9px;
+}
+
+.b-pform__bt_submit,
+.b-pform__bt_next{
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #66cc33;
+    border-color: #66cc33;
+    color: #fff;
+    padding: 0 4px;
+}
+
+.b-pform__bt_submit:hover,
+.b-pform__bt_next:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.b-pform__bt_close,
+.b-pform__bt_prev{
+    background: #fff;
+    border-color: #ccc;
+    color: #7f7f7f;
+}
+
+.b-pform__authlinks{
+    height: 47px;
+    line-height: 24px;
+}
+
+.b-pform__authlinks a,
+.b-pform__authlinks a:hover,
+.b-pform__authlinks a:visited{
+    color: #666;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.b-pform__authlinks a:hover{
+    text-decoration: underline;
+}
+
+.b-pform__bt_close,
+.b-pform__authlinks{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.b-pform__bt_prev,
+.b-pform__bt_next{
+    padding: 0 27px;
+    width: auto;
+}
+
+.b-pform__bt_prev{
+    text-transform: uppercase;
+}
+.b-pform__bt_next{
+    padding-right: 42px;
+}
+
+.b-pform__bt_close:hover,
+.b-pform__bt_prev:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.b-pform__bt_file{
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+    width: auto !important;
+    color: #fff;
+    background-color: #b3b3b3;
+    border-color: #b3b3b3;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    line-height: 47px;
+}
+
+.iexform-after-success{
+    align-items: center;
+    justify-content: center;
+}
+
+.iexform-before-success,
+.iexform-after-success{
+    display: none;
+}
+
+.iexform-before-success.active{
+    display: block;
+}
+
+.iexform-after-success.active{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.b-pform__confirmed {
+    font-size: 17px;
+    line-height: 20px;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.b-pform_for_dark_bg .b-pform__confirmed{
+    color: #fff;
+}
+
+.b-pform__confirmed-ico {
+    background: url(img/confirmed.png) no-repeat;
+    width: 114px;
+    height: 114px;
+    margin-bottom: 25px;
+}
+
+.b-pform__thanks {
+    font-size: 23px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 7px;
+}
+
+.b-pform_for_dark_bg .b-pform__thanks{
+    color: #fff;
+}
+
+.b-pform__hintwrap {
+    position: relative;
+}
+
+.b-pform__item_file .b-pform__hintwrap + .b-pform__hintwrap{
+    margin-top: 5px;
+}
+
+.b-pform__hint-ico{
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 20;
+    font-size: 22px;
+    line-height: 0;
+    color: #b3b3b3;
+}
+
+.b-pform__item_file .b-pform__hint-ico{
+    right: 77px;
+}
+
+.b-pform__hint{
+    /* реализуется на tooltip.js */
+}
+
+.b-pform__plusbt{
+    display: block;
+    margin-top: 5px;
+    color: #666 !important;
+    text-decoration: underline;
+    outline: none !important;
+}
+
+.iexform-updating{
+    position:relative;
+}
+
+.iexform-updating:after{
+    content: "";
+    position: absolute;
+    background: url("img/spinner.gif") no-repeat scroll center center transparent;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.b-pform__filewrap{
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.b-pform__filewrap + .b-pform__filewrap{
+    margin-top: 5px;
+}
+
+.b-pform__filewrap .iexform-error-message{
+    margin-left: 1px;
+    margin-top: -20px;
+}
+
+.b-pform__input_file{
+    position: relative;
+    z-index: 0;
+    padding-right: 72px;
+}
+
+.b-pform__filebutton{
+    position: absolute;
+    z-index: 2;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    padding: 0 10px;
+    border: none;
+    color: #fff;
+    background-color: #b3b3b3;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+.b-pform__filewrap .b-pform__filebutton{
+    bottom: auto;
+    top: 0;
+}
+
+.b-pform__filereal{
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.b-pform__step{
+    display: none;
+}
+.b-pform__step_curr{
+    display: block;
+}
+
+.b-pform__steptitle{
+    display: inline-block;
+    text-align: right;
+    margin-bottom: 24px;
+    font-weight: bold;
+    background-color: #b3b3b3;
+    padding: 5px 10px 6px 20px;
+    color: #fff;
+    margin-left: -20px;
+}
+
+.b-pform__stepbulls{}
+.b-pform__stepbulls i{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #b3b3b3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.b-pform__stepbulls i + i{
+    margin-left: 5px;
+}
+.b-pform__stepbulls i.curr{
+    background: #b3b3b3;
+}
+
+.b-pform__policy,
+.b-pform__policy:hover,
+.b-pform__policy:visited {
+    color: #555 !important;
+}
+.b-pform__policy,
+.b-pform__policy:visited {
+    text-decoration: underline !important;
+}
+.b-pform__policy:hover {
+    text-decoration: none !important;
+}
+
+.b-pform_for_dark_bg .b-pform__policy,
+.b-pform_for_dark_bg .b-pform__policy:hover,
+.b-pform_for_dark_bg .b-pform__policy:visited{
+    color: #fff !important;
+}
+
+/* b-pform-tooltip */
+
+.b-pform-tooltip {
+    max-width: 100%;
+    padding: 2px 8px 3px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    background-color: #a2a1a1;
+    border-radius: 4px;
+}
+.b-pform-tooltip::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.b-pform-tooltip.error {
+    background-color: red;
+}
+
+.b-pform-tooltip[x-placement="top"] {
+    margin-bottom: 6px;
+}
+.b-pform-tooltip.outline[x-placement="top"] {
+    margin-bottom: 8px;
+}
+.b-pform-tooltip[x-placement="top"]::before {
+    bottom: -4px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px 6px 0;
+    border-top-color:  #a2a1a1;
+}
+.b-pform-tooltip.error[x-placement="top"]::before {
+    border-top-color: red;
+}
+
+.b-pform-tooltip[x-placement="right"] {
+    margin-left: 6px;
+}
+.b-pform-tooltip.outline[x-placement="right"] {
+    margin-left: 8px;
+}
+.b-pform-tooltip[x-placement="right"]::before {
+    left: -4px;
+    top: 50%;
+    margin-top: -6px;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #a2a1a1;
+}
+.b-pform-tooltip.error[x-placement="right"]::before{
+    border-right-color: red;
+}
+
+.b-pform-tooltip[x-placement="bottom"] {
+    margin-top: 6px;
+}
+.b-pform-tooltip.outline[x-placement="bottom"] {
+    margin-top: 8px;
+}
+.b-pform-tooltip[x-placement="bottom"]::before {
+    top: -4px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 0 6px 6px;
+    border-bottom-color: #a2a1a1;
+}
+.b-pform-tooltip.error[x-placement="bottom"]::before {
+    border-bottom-color: red;
+}
+
+.b-pform-tooltip[x-placement="left"] {
+    margin-right: 6px;
+}
+.b-pform-tooltip.outline[x-placement="left"] {
+    margin-right: 8px;
+}
+.b-pform-tooltip[x-placement="left"]::before {
+    top: 50%;
+    right: -4px;
+    margin-top: -6px;
+    border-width: 6px 0 6px 6px;
+    border-left-color: #a2a1a1;
+}
+.b-pform-tooltip.error[x-placement="left"]::before {
+    border-left-color: red;
+}
+
+.b-pform-tooltip.error.common {
+    margin: 0;
+    padding: 4px 10px;
+    border: none;
+}
+.b-pform-tooltip.error.common::before {
+    display: none;
+}
+
+
+/* b-pform-panel */
+
+.b-pform-panel,
+.b-pform-panel *,
+.b-pform-panel *::after,
+.b-pform-panel *::before{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    color: #555555;
+}
+
+.b-pform-panel_white_icons *,
+.b-pform-panel_white_icons *::after,
+.b-pform-panel_white_icons *::before{
+    color: #fff;
+}
+
+.b-pform-panel{
+    position: fixed;
+    z-index: 999990;
+    right: 0;
+    top: 50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    /*width: 272px; не фиксиуруем ширину */
+    opacity: 0.9;
+}
+
+.b-pform-panel_hidden{
+    -webkit-transform: translate(100%, -50%);
+    transform: translate(100%, -50%);
+}
+
+.b-pform-panel_r{
+    right: 0;
+    left: auto;
+}
+
+.b-pform-panel_l{
+    left: 0;
+    right: auto;
+}
+
+.b-pform-panel__menu{}
+
+.b-pform-panel_hidden .b-pform-panel__menu{
+    transform: translateX(-58px);
+}
+
+.b-pform-panel__option{
+    display: block;
+    position: relative;
+    border-style: solid;
+    border-color: #ec673c;
+    border-width: 1px 0 0 1px;
+    background-color: #d85328;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 23px 20px 22px 58px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    outline: none;
+}
+
+.b-pform-panel__option:hover{
+    background-color: #ec673c;
+    color: #555555;
+}
+
+.b-pform-panel_white_icons .b-pform-panel__option:hover{
+    color: #fff;
+}
+
+.b-pform-panel__option:first-child {
+    border-top-left-radius: 13px;
+}
+
+.b-pform-panel__option:last-child {
+    border-bottom-left-radius: 13px;
+    border-bottom-width: 1px;
+}
+
+.b-pform-panel__option .b-pform-ico{
+    position: absolute;
+    font-size: 24px;
+    top: 50%;
+    margin-top: -12px;
+    left: 20px;
+}
+
+.b-pform-panel_hidden .b-pform-panel__option .b-pform-ico {
+    left: 17px;
+}
+
+.b-pform-panel__hide,
+.b-pform-panel__show{
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+
+    height: 28px;
+    line-height: 26px;
+
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+
+    border-style: solid;
+    border-color: #ec673c;
+    border-width: 0 0 1px 1px;
+    border-bottom-left-radius: 10px;
+    background-color: #d85328;
+    outline: none;
+
+    padding: 0 10px 0 24px;
+    margin-top: -1px;
+}
+
+.b-pform-panel__hide:hover,
+.b-pform-panel__show:hover{
+    background-color: #ec673c;
+    color: #555555;
+}
+
+.b-pform-panel_white_icons .b-pform-panel__hide:hover,
+.b-pform-panel_white_icons .b-pform-panel__show:hover{
+    color: #fff;
+}
+
+.b-pform-panel__hide{
+    float: right;
+}
+
+.b-pform-panel__show{
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+}
+
+.b-pform-panel_hidden .b-pform-panel__show{
+    display: block;
+    padding-right: 4px;
+}
+
+.b-pform-panel__show .b-pform-ico,
+.b-pform-panel__hide .b-pform-ico{
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    margin-top: -11px;
+    font-size: 20px;
+}
+
+
+/* responsive */
+
+@media (max-width: 490px) {
+    .iexmodal .b-pform_multistep .b-pform__buttons{
+        text-align: center;
+    }
+    .b-pform_multistep .b-pform__bt,
+    .iexmodal .b-pform_multistep .b-pform__bt{
+        width: auto;
+        padding: 0 17px;
+    }
+    .b-pform_multistep .b-pform__bt_next,
+    .iexmodal .b-pform_multistep .b-pform__bt_next {
+        padding-right: 35px;
+    }
+    .b-pform_multistep .b-pform__bt_next .b-pform-ico {
+        right: 6px;
+    }
+}
+
+@media (max-width: 420px) {
+    .b-pform__bt{
+        box-sizing: border-box;
+    }
+    .b-pform:not(.b-pform_multistep) .b-pform__bt,
+    .iexmodal .b-pform:not(.b-pform_multistep) .b-pform__bt,
+    .b-pform__authlinks{
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .b-pform__bt_submit,
+    .iexmodal .b-pform__bt_submit{
+        margin-bottom: 15px;
+    }
+    .b-pform__bt_close,
+    .b-pform__authlinks{
+        position: static;
+    }
+}

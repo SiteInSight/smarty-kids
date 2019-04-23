@@ -9,7 +9,12 @@ $(function () {
   });
 
   $('.summer--nav__item').click(function () {
-      $(".summer--pic__item").removeClass("active").eq($(this).parent().index()).addClass("active");
+    $(".summer--pic__item").removeClass("active").eq($(this).parent().index()).addClass("active");
+  });
+
+  $('.slides').slick({
+    navs: false,
+    dots: true,
   })
 
 

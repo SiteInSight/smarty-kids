@@ -1,0 +1,19 @@
+{
+  "name": "iexModal",
+  "version": "4.0.0",
+  "author": "ili",
+  "iexform-packer": {
+    "root": "/",
+    "bundle": [
+      "iexModal.css",
+      "iexModal.js",
+      "policy.htm",
+      "package.json"
+    ],
+    "head": [
+      "iexModal.css",
+      "iexModal.js"
+    ]
+  }
+
+}

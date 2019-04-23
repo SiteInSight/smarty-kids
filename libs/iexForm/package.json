@@ -1,0 +1,33 @@
+{
+  "name": "iexForm",
+  "version": "10.19.0",
+  "author": "ili,ilya",
+  "scripts": {
+    "build": "browserify js-libs/iexform.js -o iexform.bundle.js",
+    "watch": "watchify js-libs/iexform.js -o iexform.bundle.js -v",
+    "map": "browserify js-libs/iexform.js --debug | exorcist iexform.bundle.js.map > iexform.bundle.js",
+    "min": "browserify js-libs/iexform.js | uglifyjs -c > iexform.bundle.min.js",
+    "multi": "browserify js-libs/iexform.js --debug -t -p [ minifyify --map iexform.bundle.map.js --output iexform.bundle.map.js ] > iexform.bundle.js"
+  },
+  "iexform-packer": {
+    "root": "/",
+    "bundle": [
+      "class/*",
+      "config/*",
+      "ext/*",
+      "fonts/*",
+      "img/*",
+      "panel/*",
+      "template/*",
+      "iexform.bundle.js",
+      "iexform.css",
+      "index.php",
+      "package.json"
+    ],
+    "head": [
+      "iexform.css",
+      "iexform.bundle.js"
+    ]
+  }
+
+}

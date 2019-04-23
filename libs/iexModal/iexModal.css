@@ -1,0 +1,946 @@
+/**
+ * iexModal
+ */
+
+.iexmodal{
+    display: none;
+    position: fixed;
+    z-index: 9990;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.iexmodal-alert.iexmodal{
+    right: auto;
+    bottom: auto;
+    overflow: visible;
+}
+
+.iexmodal-spinner {
+    display: none;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    -webkit-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+    opacity: 0;
+}
+
+.iexmodal-loading .iexmodal-spinner{
+    display: block;
+    opacity: 1;
+}
+
+.iexmodal-spinner::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent #fff transparent;
+    -webkit-animation: rotateSpinner 1.2s linear infinite;
+    animation: rotateSpinner 1.2s linear infinite;
+}
+
+@keyframes rotateSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes rotateSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.iexmodal-popup {
+    position: fixed;
+    opacity: 0;
+    z-index: 9991;
+    /* width: 450px; задаем в JS */
+    left: 50%;
+    top: 50%;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: height 1s ease 0s;
+    -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    -webkit-appearance: none; /* отключает стили Safari на iOS (чтобы работало box-shadow) */
+}
+
+.iexmodal-alert .iexmodal-popup{
+    left: auto;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    width: 300px;
+    height: 200px;
+    -webkit-box-shadow: 0 1px 23px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 23px 3px rgba(0, 0, 0, 0.2);
+}
+
+.iexmodal-fullscreen .iexmodal-popup{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.iexmodal-overflow-y .iexmodal-popup{
+    top: 10px;
+    bottom: 10px;
+}
+
+.iexmodal-overflow-x .iexmodal-popup{
+    left: 10px;
+    right: 10px;
+}
+
+.iexmodal-top .iexmodal-popup{
+    top: 0;    
+    right: 0;
+    bottom: 60%;
+    left: 0;
+    border-radius: 0 0 3px 3px;
+}
+.iexmodal-right .iexmodal-popup{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 70%;
+    border-radius: 3px 0 0 3px;
+}
+.iexmodal-bottom .iexmodal-popup{
+    top: 60%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 3px 3px 0 0;
+}
+.iexmodal-left .iexmodal-popup{
+    top: 0;
+    right: 70%;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+@media (max-width: 500px) {
+    .iexmodal-right .iexmodal-popup{
+        left: 20%;
+    }
+    .iexmodal-left .iexmodal-popup{
+        right: 20%;
+    }
+}
+@media (max-height: 450px) {
+    .iexmodal-top .iexmodal-popup{
+        bottom: 20%;
+    }
+    .iexmodal-bottom .iexmodal-popup{
+        top: 20%;
+    }
+}
+
+.iexmodal-fullscreen .iexmodal-popup,
+.iexmodal-top .iexmodal-popup,
+.iexmodal-right .iexmodal-popup,
+.iexmodal-bottom .iexmodal-popup,
+.iexmodal-left .iexmodal-popup {
+    width: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.iexmodal-inner {
+    position: relative;
+    z-index: 9992;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+    cursor: default;
+}
+
+.iexmodal-fullscreen .iexmodal-inner,
+.iexmodal-left .iexmodal-inner,
+.iexmodal-top .iexmodal-inner,
+.iexmodal-right .iexmodal-inner,
+.iexmodal-bottom .iexmodal-inner,
+.iexmodal-overflow-y .iexmodal-inner,
+.iexmodal-alert .iexmodal-inner {
+    height: 100%;
+}
+
+
+
+/* нужно чтобы за границу блока iexmodal-inner-wrap не вылазили margin-top у первого дочернего элемента и margin-bottom у последнего дочернего элемента */
+.iexmodal-inner-wrap::before,
+.iexmodal-inner-wrap::after{
+    content: "";
+    display: block;
+    height: 1px;
+}
+
+.iexmodal-icon{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.iexmodal-close-light,
+.iexmodal-close-dark{
+    position: absolute;
+    padding: 18px;
+    stroke-linecap: round;
+    cursor: pointer;
+}
+
+.iexmodal-close-light{
+    right: 0;
+    top: 0;
+    font-size: 26px;
+    stroke-width: 2.3px;
+    color: #fff;
+    -webkit-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+    opacity: 0;
+}
+
+.iexmodal-right .iexmodal-close-light{
+    right: auto;
+    left: 0;
+}
+
+.iexmodal-loading .iexmodal-close-light{
+    opacity: 1;
+}
+
+.iexmodal-close-dark{
+    z-index: 9993;
+    right: -5px;
+    top: -5px;
+    font-size: 18px;
+    stroke-width: 3px;
+    color: #000;
+}
+
+.iexmodal-right .iexmodal-close-dark{
+    right: auto;
+    left: -5px;
+}
+
+.iexmodal-close-light .iexmodal-icon,
+.iexmodal-close-dark .iexmodal-icon{
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    transform-origin: center center;
+}
+
+.iexmodal-close-dark .iexmodal-icon{
+    opacity: 0.6;
+}
+
+.iexmodal-close-light:hover .iexmodal-icon,
+.iexmodal-close-dark:hover .iexmodal-icon{
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.iexmodal-close-dark:hover .iexmodal-icon{
+    opacity: 0.8;
+}
+
+.iexmodal-content{
+    display: none;
+}
+
+.iexmodal-debug-wrap{
+    word-wrap: break-word;
+}
+
+.iexmodal-debug-code{
+    max-height: 150px;
+    min-height: 60px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #e8e8e8;
+    padding: 5px 6px;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 16px;
+    resize: vertical;
+}
+
+.iexmodal-debug-panel{
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 30%;
+    background-color: #fff;
+    white-space: pre;
+    font-family: monospace;
+    overflow: scroll;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+    font-size: 12px;
+    line-height: 14px;
+    padding: 0 6px 6px;
+}
+
+@media (min-width: 500px) {
+    .iexmodal-debug-panel{
+        width: 60%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .iexmodal-debug-panel{
+        width: 40%;
+    }
+}
+
+.iexmodal-animate{
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    opacity: 1;
+}
+
+@-webkit-keyframes iexmodal-animate-wrap-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes iexmodal-animate-wrap-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.iexmodal-animate-wrap-in {
+    -webkit-animation-name: iexmodal-animate-wrap-in;
+    animation-name: iexmodal-animate-wrap-in;
+}
+
+@-webkit-keyframes iexmodal-animate-wrap-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes iexmodal-animate-wrap-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.iexmodal-animate-wrap-out {
+    -webkit-animation-name: iexmodal-animate-wrap-out;
+    animation-name: iexmodal-animate-wrap-out;
+}
+
+@-webkit-keyframes iexmodal-animate-default-in {
+    from {
+        -webkit-transform: translate3d(0, -50px, 0);
+        transform: translate3d(0, -50px, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-default-in {
+    from {
+        -webkit-transform: translate3d(0, -50px, 0);
+        transform: translate3d(0, -50px, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-default-in {
+    -webkit-animation-name: iexmodal-animate-default-in;
+    animation-name: iexmodal-animate-default-in;
+}
+
+@-webkit-keyframes iexmodal-animate-default-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 70px, 0);
+        transform: translate3d(0, 70px, 0);
+    }
+}
+
+@keyframes iexmodal-animate-default-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 70px, 0);
+        transform: translate3d(0, 70px, 0);
+    }
+}
+
+.iexmodal-animate-default-out {
+    -webkit-animation-name: iexmodal-animate-default-out;
+    animation-name: iexmodal-animate-default-out;
+}
+
+@-webkit-keyframes iexmodal-animate-fullscreen-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes iexmodal-animate-fullscreen-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.iexmodal-animate-fullscreen-in {
+    -webkit-animation-name: iexmodal-animate-fullscreen-in;
+    animation-name: iexmodal-animate-fullscreen-in;
+}
+
+@-webkit-keyframes iexmodal-animate-fullscreen-out {
+    /* прозрачность анимируется вместе с враппером
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+    */
+}
+
+@keyframes iexmodal-animate-fullscreen-out {
+    /* прозрачность анимируется вместе с враппером
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+    */
+}
+
+.iexmodal-animate-fullscreen-out {
+    -webkit-animation-name: iexmodal-animate-fullscreen-out;
+    animation-name: iexmodal-animate-fullscreen-out;
+}
+
+@-webkit-keyframes iexmodal-animate-alert-in {
+    0% {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    70% {
+        -webkit-transform: translate3d(-30px, 0, 0);
+        transform: translate3d(-30px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-alert-in {
+    0% {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    70% {
+        -webkit-transform: translate3d(-30px, 0, 0);
+        transform: translate3d(-30px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-alert-in {
+    -webkit-animation-name: iexmodal-animate-alert-in;
+    animation-name: iexmodal-animate-alert-in;
+}
+
+
+@-webkit-keyframes iexmodal-animate-alert-out {
+    0% {
+    }
+
+    30% {
+        -webkit-transform: translate3d(-40px, 0, 0);
+        transform: translate3d(-40px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-alert-out {
+    0% {
+    }
+
+    30% {
+        -webkit-transform: translate3d(-40px, 0, 0);
+        transform: translate3d(-40px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+.iexmodal-animate-alert-out {
+    -webkit-animation-name: iexmodal-animate-alert-out;
+    animation-name: iexmodal-animate-alert-out;
+}
+
+@-webkit-keyframes iexmodal-animate-top-in {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-top-in {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-top-in {
+    -webkit-animation-name: iexmodal-animate-top-in;
+    animation-name: iexmodal-animate-top-in;
+}
+
+@-webkit-keyframes iexmodal-animate-top-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+@keyframes iexmodal-animate-top-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+.iexmodal-animate-top-out {
+    -webkit-animation-name: iexmodal-animate-top-out;
+    animation-name: iexmodal-animate-top-out;
+}
+
+
+@-webkit-keyframes iexmodal-animate-bottom-in {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-bottom-in {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-bottom-in {
+    -webkit-animation-name: iexmodal-animate-bottom-in;
+    animation-name: iexmodal-animate-bottom-in;
+}
+
+
+@-webkit-keyframes iexmodal-animate-bottom-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+@keyframes iexmodal-animate-bottom-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+.iexmodal-animate-bottom-out {
+    -webkit-animation-name: iexmodal-animate-bottom-out;
+    animation-name: iexmodal-animate-bottom-out;
+}
+
+@-webkit-keyframes iexmodal-animate-right-in {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-right-in {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-right-in {
+    -webkit-animation-name: iexmodal-animate-right-in;
+    animation-name: iexmodal-animate-right-in;
+}
+
+@-webkit-keyframes iexmodal-animate-right-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-right-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+.iexmodal-animate-right-out {
+    -webkit-animation-name: iexmodal-animate-right-out;
+    animation-name: iexmodal-animate-right-out;
+}
+
+@-webkit-keyframes iexmodal-animate-left-in {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-left-in {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.iexmodal-animate-left-in {
+    -webkit-animation-name: iexmodal-animate-left-in;
+    animation-name: iexmodal-animate-left-in;
+}
+
+@-webkit-keyframes iexmodal-animate-left-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes iexmodal-animate-left-out {
+    from {
+    }
+
+    to {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.iexmodal-animate-left-out {
+    -webkit-animation-name: iexmodal-animate-left-out;
+    animation-name: iexmodal-animate-left-out;
+}
+
+/*
+ * END: iexModal
+ */
+
+/*
+ * perfect-scrollbar.js
+ */
+/*
+ * Container style
+ */
+.ps {
+    overflow: hidden !important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+    display: none;
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    -webkit-transition: background-color .2s linear, opacity .2s linear;
+    height: 15px;
+    /* there must be 'bottom' or 'top' for ps__rail-x */
+    bottom: 0px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-y {
+    display: none;
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    -webkit-transition: background-color .2s linear, opacity .2s linear;
+    width: 15px;
+    /* there must be 'right' or 'left' for ps__rail-y */
+    right: 0;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+    display: block;
+    background-color: transparent;
+}
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+    opacity: 0.6;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+    background-color: #eee;
+    opacity: 0.9;
+}
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color .2s linear, height .2s ease-in-out;
+    -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+    height: 6px;
+    /* there must be 'bottom' for ps__thumb-x */
+    bottom: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__thumb-y {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color .2s linear, width .2s ease-in-out;
+    -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+    width: 6px;
+    /* there must be 'right' for ps__thumb-y */
+    right: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+    background-color: #999;
+    height: 11px;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: #999;
+    width: 11px;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+/*
+ * END: perfect-scrollbar.js
+ */
+
+/*
+ * iexModal fixes for perfect-scrollbar.js
+ */
+.ps .ps__rail-x{
+    display: none !important;
+}
+.ps .ps__rail-y{
+    opacity: 0.4 !important;
+    background-color: #ddd;
+    width: 8px;
+    transition: width .2s linear, background-color .2s linear;
+    -webkit-transition: width .2s linear, background-color .2s linear;
+}
+.ps .ps__thumb-y{
+    background-color: #000;
+    width: auto;
+    left: 2px;
+    right: 2px;
+}
+.ps .ps__rail-y:hover{
+    width: 12px;
+    background-color: #ddd;
+}
+.ps .ps__rail-y:hover > .ps__thumb-y{
+    background-color: #000;
+    left: 2px;
+    right: 2px;
+    width: auto;
+}
+/*
+ * END: iexModal fixes for perfect-scrollbar.js
+ */

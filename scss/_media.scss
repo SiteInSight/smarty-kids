@@ -54,6 +54,15 @@
   .test--form__wrapper {
     font-size: 18px;
   }
+  .adv_for_child {
+    width: 330px;
+  }
+  .block-with-super-smart p {
+    display: none;
+  }
+  .block-with-super-smart .adv_for_child {
+    align-items: center;
+  }
 }
 
 // ≥768px
@@ -93,6 +102,12 @@
 
 // ≥576px
 @include media-breakpoint-down(xs) {
+  .header--logo img {
+    width: 50px;
+  }
+  .btn--swipe {
+    padding: 30px 10px;
+  }
   .summer--pic__box .txt-14 {
     font-size: 10px;
   }
